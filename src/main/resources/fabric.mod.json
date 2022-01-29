@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "squake-fabric",
+  "version": "${version}",
+  "name": "Squake Fabric",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "unlicense",
+  "icon": "assets/squake-fabric/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "he11crow.squakefabric.client.SquakeFabricClient"
+    ],
+    "main": [
+      "he11crow.squakefabric.SquakeFabric"
+    ]
+  },
+  "mixins": [
+    "squake-fabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.12.12",
+    "fabric": "*",
+    "minecraft": "1.18.1"
+  }
+}
