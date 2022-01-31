@@ -5,6 +5,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.shape.VoxelShape;
 
+import java.util.stream.Collectors;
+
 public class PlayerAPI {
 
     public static double prevX(Entity player) {
@@ -70,7 +72,8 @@ public class PlayerAPI {
 
     public static boolean isLiquidPresentInBB(Entity player, Box bb) {
         boolean isInCollision = true;
-        for (VoxelShape collision : player.world.getCollisions(player, bb)) {
+
+        for (VoxelShape collision : player.world.getBlockCollisions(player, bb).toList()) {
             if (isInCollision) {
                 if (!collision.isEmpty()) {
                     isInCollision = false;
