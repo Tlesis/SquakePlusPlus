@@ -6,9 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 public class SquakeFabric implements ModInitializer {
 
-    public static final String MODID = "squakefabric";
-
-    public static final Logger LOGGER = LogManager.getLogger(MODID);
+    public static final Logger LOGGER = LogManager.getLogger(Reference.MOD_ID);
 
     @Override
     public void onInitialize() {

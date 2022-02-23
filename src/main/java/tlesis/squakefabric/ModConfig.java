@@ -1,6 +1,5 @@
 package tlesis.squakefabric;
 
-
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.*;
@@ -111,7 +110,7 @@ public class ModConfig {
                 }
 
             }
-
+            reader.close();
         } catch (FileNotFoundException e) {
             SquakeFabric.LOGGER.error("\"squake.cfg\" not found");
         }
