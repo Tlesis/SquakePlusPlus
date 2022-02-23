@@ -1,4 +1,4 @@
-package he11crow.squakefabric.client;
+package tlesis.squakefabric.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;

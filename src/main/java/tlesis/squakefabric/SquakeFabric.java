@@ -1,4 +1,4 @@
-package he11crow.squakefabric;
+package tlesis.squakefabric;
 
 import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;

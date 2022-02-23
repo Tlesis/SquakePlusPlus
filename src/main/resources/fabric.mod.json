@@ -4,25 +4,29 @@
   "version": "${version}",
   "name": "Squake Fabric",
   "description": "Squake mod fabric port",
-  "authors": ["He11crow"],
+  "authors": [
+    "He11crow",
+    "Tlesis",
+    "LeviOP"],
   "contact": {},
   "license": "unlicense",
   "icon": "assets/squake-fabric/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "he11crow.squakefabric.client.SquakeFabricClient"
+      "tlesis.squakefabric.client.SquakeFabricClient"
     ],
     "main": [
-      "he11crow.squakefabric.SquakeFabric"
+      "tlesis.squakefabric.SquakeFabric"
     ]
   },
   "mixins": [
-    "squake-fabric.mixins.json"
+    "mixins.squake-fabric.json"
   ],
   "depends": {
     "fabricloader": ">=0.12.12",
     "fabric": "*",
-    "minecraft": "1.18.1"
+    "minecraft": "1.18.1",
+    "malilib": ">=0.11.3 <0.12"
   }
 }

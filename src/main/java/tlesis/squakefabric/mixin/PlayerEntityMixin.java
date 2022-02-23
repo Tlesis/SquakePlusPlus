@@ -1,4 +1,4 @@
-package he11crow.squakefabric.mixin;
+package tlesis.squakefabric.mixin;
 
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static he11crow.squakefabric.client.QuakeClientPlayer.*;
+import static tlesis.squakefabric.client.QuakeClientPlayer.*;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin {

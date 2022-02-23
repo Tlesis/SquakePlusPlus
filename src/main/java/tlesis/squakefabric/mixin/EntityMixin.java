@@ -1,6 +1,6 @@
-package he11crow.squakefabric.mixin;
+package tlesis.squakefabric.mixin;
 
-import he11crow.squakefabric.client.QuakeClientPlayer;
+import tlesis.squakefabric.client.QuakeClientPlayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
