@@ -9,7 +9,7 @@ import fi.dy.masa.malilib.event.WorldLoadHandler;
 import fi.dy.masa.malilib.interfaces.IInitializationHandler;
 import fi.dy.masa.malilib.interfaces.IRenderer;
 import tlesis.squakefabric.config.Configs;
-import tlesis.squakefabric.config.HotkeyCallbacks;
+import tlesis.squakefabric.config.Hotkey;
 import tlesis.squakefabric.data.DataManager;
 import tlesis.squakefabric.data.FileMigrationUtils;
 import tlesis.squakefabric.event.InputHandler;
@@ -18,14 +18,13 @@ import tlesis.squakefabric.event.WorldLoadListener;
 import tlesis.squakefabric.render.infohud.StatusInfoRenderer;
 import tlesis.squakefabric.scheduler.ClientTickHandler;
 
-public class InitHandler implements IInitializationHandler
-{
+public class InitHandler implements IInitializationHandler {
     @Override
-    public void registerModHandlers()
-    {
+    public void registerModHandlers() {
         ConfigManager.getInstance().registerConfigHandler(Reference.MOD_ID, new Configs());
 
         InputEventHandler.getKeybindManager().registerKeybindProvider(InputHandler.getInstance());
+        InputEventHandler.getInputManager().registerKeyboardInputHandler(InputHandler.getInstance());
         InputEventHandler.getInputManager().registerMouseInputHandler(InputHandler.getInstance());
 
         IRenderer renderer = new RenderHandler();
@@ -38,10 +37,9 @@ public class InitHandler implements IInitializationHandler
         WorldLoadHandler.getInstance().registerWorldLoadPreHandler(listener);
         WorldLoadHandler.getInstance().registerWorldLoadPostHandler(listener);
 
-        FileMigrationUtils.tryMigrateOldPerWorldData();
-        FileMigrationUtils.tryMigrateOldAreaSelections();
+        ClientPacketChannelHandler.getInstance().registerClientChannelHandler(CarpetHelloPacketHandler.INSTANCE);
 
-        HotkeyCallbacks.init(Minecraft.getMinecraft());
+        KeyCallbacks.init(MinecraftClient.getInstance());
         StatusInfoRenderer.init();
 
         DataManager.getAreaSelectionsBaseDirectory();
