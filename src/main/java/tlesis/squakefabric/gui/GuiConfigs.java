@@ -68,9 +68,12 @@ public class GuiConfigs extends GuiConfigsBase {
     @Override
     protected void onSettingsChanged() {
         super.onSettingsChanged();
+
+        System.out.println("Settings changed");
     }
 
     private static class ButtonListener implements IButtonActionListener {
+        @SuppressWarnings("unused")
         private final GuiConfigs parent;
         private final ConfigGuiTab tab;
 

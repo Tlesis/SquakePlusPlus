@@ -28,7 +28,7 @@ public class Configs implements IConfigHandler {
         public static final ConfigDouble    AIR_ACCELERATE              = new ConfigDouble("airAccelerate", 14.0, "A higher value means you can turn more sharply in the air without losing speed");
         public static final ConfigDouble    GROUND_ACCELERATE           = new ConfigDouble("groundAccelerate", 10.0, "A higher value means you accelerate faster on the ground");
         public static final ConfigDouble  MAX_AIR_ACCELERATION_PER_TICK = new ConfigDouble("maxAirAccelerationPerTick", 0.045, "A  higher value means faster air acceleration");
-        public static final ConfigDouble    HARD_CAP_THRESHOLD          = new ConfigDouble("hardCapThreshold", 0, "see uncappedBunnyhopEnabled; if you ever jump while above the hard cap speed (moveSpeed*hardCapThreshold), your speed is set to the hard cap speed");
+        public static final ConfigDouble    HARD_CAP_THRESHOLD          = new ConfigDouble("hardCapThreshold", 0.0, "see uncappedBunnyhopEnabled; if you ever jump while above the hard cap speed (moveSpeed*hardCapThreshold), your speed is set to the hard cap speed");
         public static final ConfigDouble    SOFT_CAP_DEGEN              = new ConfigDouble("softCapDegen", 0.65, "The modifier used to calculate speed lost when jumping above the soft cap");
         public static final ConfigDouble    SOFT_CAP_THRESHOLD          = new ConfigDouble("softCapThreshold", 1.4, "See uncappedBunnyhopEnabled and softCapDegen; soft cap speed = (moveSpeed*softCapThreshold)");
         public static final ConfigBoolean   SHARK                       = new ConfigBoolean("shark", false, "Sharking refers to gliding across the surface of water by holding jump.");
@@ -57,7 +57,9 @@ public class Configs implements IConfigHandler {
             SHARK_WATER_FRICTION,
 
             TRIMP,
-            TRIMP_MULTIPLIER
+            TRIMP_MULTIPLIER,
+
+            INCREASED_FALL_DISTANCE
         );
     }
 
