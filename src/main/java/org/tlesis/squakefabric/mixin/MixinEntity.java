@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Entity.class)
-public class EntityMixin {
+public class MixinEntity {
 
     @Inject(method = "updateVelocity", at = @At("HEAD"), cancellable = true)
     public void updateVelocityInject(float speed, Vec3d movementInput, CallbackInfo ci) {

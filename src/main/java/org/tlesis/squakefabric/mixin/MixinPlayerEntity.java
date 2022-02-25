@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import static org.tlesis.squakefabric.client.QuakeClientPlayer.*;
 
 @Mixin(PlayerEntity.class)
-public class PlayerEntityMixin {
+public class MixinPlayerEntity {
     @Inject(method = "jump", at = @At("TAIL"))
     public void jumpInject(CallbackInfo ci) {
         PlayerEntity player = ((PlayerEntity)(Object)this);

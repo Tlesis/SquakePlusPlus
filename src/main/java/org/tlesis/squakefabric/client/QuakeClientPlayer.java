@@ -13,7 +13,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.chunk.ChunkStatus;
-import org.tlesis.squakefabric.ModConfig;
+import org.tlesis.squakefabric.config.Configs;
 import org.tlesis.squakefabric.scheduler.ClientTickHandler;
 
 import java.util.ArrayList;
@@ -28,13 +28,13 @@ public class QuakeClientPlayer {
 
     private static final List<float[]> baseVelocities = new ArrayList<>();
 
-    public static boolean moveEntityWithHeading(PlayerEntity player, float sidemove,float forwardmove) {
+    public static boolean moveEntityWithHeading(PlayerEntity player, float sidemove, float forwardmove) {
 
         if (!player.world.isClient) {
             return false;
         }
 
-        if (!ModConfig.ENABLED) {
+        if (!Configs.Generic.ENABLED.getBooleanValue()) {
             return false;
         }
 
@@ -82,7 +82,7 @@ public class QuakeClientPlayer {
             return false;
         }
 
-        if (!ModConfig.ENABLED) {
+        if (!Configs.Generic.ENABLED.getBooleanValue()) {
             return false;
         }
 
@@ -106,27 +106,28 @@ public class QuakeClientPlayer {
             return;
         }
 
-        if (!ModConfig.ENABLED) {
+        if (!Configs.Generic.ENABLED.getBooleanValue()) {
             return;
         }
 
-        // undo this dumb thing
-        if (player.isSprinting()) {
+        if(!Configs.Generic.HL2_OLD_ENGINE_BHOP.getBooleanValue()) {
+            if (player.isSprinting()) {
 
 
-            float f = player.getYaw() * 0.017453292F;
+                float f = player.getYaw() * 0.017453292F;
 
-            double X = getMotionX(player);
-            double Z = getMotionZ(player);
+                double X = getMotionX(player);
+                double Z = getMotionZ(player);
 
-            X += MathHelper.sin(f) * 0.2F;
-            Z -= MathHelper.cos(f) * 0.2F;
+                X += MathHelper.sin(f) * 0.2F;
+                Z -= MathHelper.cos(f) * 0.2F;
 
-            setMotionXZ(player, X, Z);
+                setMotionXZ(player, X, Z);
+            }
         }
-
+        
         quake_Jump(player);
-
+        
     }
 
     /* =================================================
@@ -407,7 +408,7 @@ public class QuakeClientPlayer {
         } else if ((player.isInLava() && !player.getAbilities().flying)) {
             return false;
         } else if (player.isTouchingWater() && !player.getAbilities().flying) {
-            if (ModConfig.SHARKING_ENABLED) {
+            if (Configs.Generic.SHARK.getBooleanValue()) {
                 quake_WaterMove(player, sidemove, forwardmove);
             } else {
                 return false;
@@ -425,7 +426,7 @@ public class QuakeClientPlayer {
                 //quake_Friction(); // buggy because material-based friction uses a totally different format
                 minecraft_ApplyFriction(player, momentumRetention);
 
-                double sv_accelerate = ModConfig.ACCELERATE;
+                double sv_accelerate = Configs.Generic.GROUND_ACCELERATE.getDoubleValue();
 
                 if (wishspeed != 0.0F) {
                     // alter based on the surface friction
@@ -449,15 +450,15 @@ public class QuakeClientPlayer {
                     setMotionZ(player, Z);
                 }
             } else { // air movement
-                double sv_airaccelerate = ModConfig.AIR_ACCELERATE;
+                double sv_airaccelerate = Configs.Generic.AIR_ACCELERATE.getDoubleValue();
                 quake_AirAccelerate(player, wishspeed, wishdir[0], wishdir[1], sv_airaccelerate);
 
-                if (ModConfig.SHARKING_ENABLED && ModConfig.SHARKING_SURFACE_TENSION > 0.0D && isJumping(player) && getMotionY(player) < 0.0F) {
+                if (Configs.Generic.SHARK.getBooleanValue() && Configs.Generic.SHARK_SURFACE_TENSION.getDoubleValue() > 0.0D && isJumping(player) && getMotionY(player) < 0.0F) {
                     Box boundingBox = player.getBoundingBox().offset(player.getVelocity());
                     boolean isFallingIntoWater = player.world.containsFluid(boundingBox);
 
                     if (isFallingIntoWater) {
-                        multMotionY(player, ModConfig.SHARKING_SURFACE_TENSION);
+                        multMotionY(player, Configs.Generic.SHARK_SURFACE_TENSION.getDoubleValue());
                     }
                 }
             }
@@ -494,7 +495,7 @@ public class QuakeClientPlayer {
     }
 
     private static boolean quake_DoTrimp(PlayerEntity player) {
-        if (ModConfig.TRIMPING_ENABLED && player.isSneaking()) {
+        if (Configs.Generic.TRIMP.getBooleanValue() && player.isSneaking()) {
             double curspeed = getSpeed(player);
             float movespeed = quake_getMaxMoveSpeed(player);
             if (curspeed > movespeed) {
@@ -502,13 +503,13 @@ public class QuakeClientPlayer {
                 if (speedbonus > 1.0F)
                     speedbonus = 1.0F;
 
-                addMotionY(player, speedbonus * curspeed * ModConfig.TRIMP_MULTIPLIER);
+                addMotionY(player, speedbonus * curspeed * Configs.Generic.TRIMP_MULTIPLIER.getDoubleValue());
 
-                if (ModConfig.TRIMP_MULTIPLIER > 0) {
+                if (Configs.Generic.TRIMP_MULTIPLIER.getDoubleValue() > 0) {
                     double X = getMotionX(player);
                     double Z = getMotionZ(player);
 
-                    float mult = 1.0f / ModConfig.TRIMP_MULTIPLIER;
+                    float mult = 1.0f / (float)Configs.Generic.TRIMP_MULTIPLIER.getDoubleValue();
 
                     X *= mult;
                     Z *= mult;
@@ -589,13 +590,13 @@ public class QuakeClientPlayer {
             minecraft_WaterMove(player, sidemove, forwardmove);
         } else {
             if (curspeed > 0.09) {
-                quake_ApplyWaterFriction(player, ModConfig.SHARKING_WATER_FRICTION);
+                quake_ApplyWaterFriction(player, Configs.Generic.SHARK_WATER_FRICTION.getDoubleValue());
             }
 
             if (curspeed > 0.098){
-                quake_AirAccelerate(player, wishspeed, wishdir[0], wishdir[1], ModConfig.ACCELERATE);
+                quake_AirAccelerate(player, wishspeed, wishdir[0], wishdir[1], Configs.Generic.GROUND_ACCELERATE.getDoubleValue());
             } else {
-                quake_Accelerate(player, .0980F, wishdir[0], wishdir[1], ModConfig.ACCELERATE);
+                quake_Accelerate(player, .0980F, wishdir[0], wishdir[1], Configs.Generic.GROUND_ACCELERATE.getDoubleValue());
             }
 
             player.move(MovementType.SELF, player.getVelocity());
@@ -661,7 +662,7 @@ public class QuakeClientPlayer {
         double Z = getMotionZ(player);
 
         float wishspd = wishspeed;
-        float maxAirAcceleration = (float) ModConfig.MAX_AIR_ACCEL_PER_TICK;
+        float maxAirAcceleration = (float) Configs.Generic.MAX_AIR_ACCELERATION_PER_TICK.getDoubleValue();
 
         if (wishspd > maxAirAcceleration) {
             wishspd = maxAirAcceleration;
@@ -743,13 +744,13 @@ public class QuakeClientPlayer {
     }
 
     private static void quake_ApplySoftCap(PlayerEntity player, float movespeed) {
-        float softCapPercent = ModConfig.SOFT_CAP;
-        float softCapDegen = ModConfig.SOFT_CAP_DEGEN;
+        float softCapPercent = (float)Configs.Generic.SOFT_CAP_THRESHOLD.getDoubleValue();
+        float softCapDegen = (float)Configs.Generic.SOFT_CAP_DEGEN.getDoubleValue();
 
         double X = getMotionX(player);
         double Z = getMotionZ(player);
 
-        if (ModConfig.UNCAPPED_BUNNYHOP_ENABLED) {
+        if (Configs.Generic.UNCAPPED_BHOP_ENABLED.getBooleanValue()) {
             softCapPercent = 1.0F;
             softCapDegen = 1.0F;
         }
@@ -775,11 +776,11 @@ public class QuakeClientPlayer {
         double X = getMotionX(player);
         double Z = getMotionZ(player);
 
-        if (ModConfig.UNCAPPED_BUNNYHOP_ENABLED) {
+        if (Configs.Generic.UNCAPPED_BHOP_ENABLED.getBooleanValue()) {
             return;
         }
 
-        float hardCapPercent = ModConfig.HARD_CAP;
+        float hardCapPercent = (float)Configs.Generic.HARD_CAP_THRESHOLD.getDoubleValue();
 
         float speed = (float) (getSpeed(player));
         float hardCap = movespeed * hardCapPercent;
