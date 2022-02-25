@@ -21,23 +21,24 @@ public class Configs implements IConfigHandler {
     private static final String CONFIG_FILE_NAME = Reference.MOD_ID + ".json";
     
     public static class Generic {
-        public static final ConfigHotkey    OPEN_CONFIG_GUI             = new ConfigHotkey("openConfigGui", "O,C", "A hotkey to open the in-game Config GUI");
-        public static final ConfigBoolean   ENABLED                     = new ConfigBoolean("enable", true, "Turns off/on the quake-style movement for the client");
-        public static final ConfigBoolean   BHOP                        = new ConfigBoolean("bhop", true, "Bunny Hopping is a movement technique where the player can increase their speed by constantly jumping whilst air-strafing."); // TODO
-        public static final ConfigBoolean   UNCAPPED_BHOP_ENABLED       = new ConfigBoolean("uncappedBunnyhopEnabled", true, "f enabled, the soft and hard caps will not be applied at all");
-        public static final ConfigDouble    AIR_ACCELERATE              = new ConfigDouble("airAccelerate", 14.0, "A higher value means you can turn more sharply in the air without losing speed");
-        public static final ConfigDouble    GROUND_ACCELERATE           = new ConfigDouble("groundAccelerate", 10.0, "A higher value means you accelerate faster on the ground");
-        public static final ConfigDouble  MAX_AIR_ACCELERATION_PER_TICK = new ConfigDouble("maxAirAccelerationPerTick", 0.045, "A  higher value means faster air acceleration");
-        public static final ConfigDouble    HARD_CAP_THRESHOLD          = new ConfigDouble("hardCapThreshold", 0.0, "see uncappedBunnyhopEnabled; if you ever jump while above the hard cap speed (moveSpeed*hardCapThreshold), your speed is set to the hard cap speed");
-        public static final ConfigDouble    SOFT_CAP_DEGEN              = new ConfigDouble("softCapDegen", 0.65, "The modifier used to calculate speed lost when jumping above the soft cap");
-        public static final ConfigDouble    SOFT_CAP_THRESHOLD          = new ConfigDouble("softCapThreshold", 1.4, "See uncappedBunnyhopEnabled and softCapDegen; soft cap speed = (moveSpeed*softCapThreshold)");
-        public static final ConfigBoolean   SHARK                       = new ConfigBoolean("shark", false, "Sharking refers to gliding across the surface of water by holding jump.");
-        public static final ConfigDouble    SHARK_SURFACE_TENSION       = new ConfigDouble("sharkingSurfaceTension", 0.2, "Amount of downward momentum you lose while entering water, a higher value means that you are able to shark after hitting the water from higher up");
-        public static final ConfigDouble    SHARK_WATER_FRICTION        = new ConfigDouble("sharkingWaterFriction", 0.1, "Amount of friction while sharking (between 0 and 1)");
-        public static final ConfigBoolean   TRIMP                       = new ConfigBoolean("trimping", false, "If you're moving fast enough, holding sneak while jumping will convert some of your horizontal speed into vertical speed.");
-        public static final ConfigDouble    TRIMP_MULTIPLIER            = new ConfigDouble("trimpMultiplier", 1.4, "a lower value means less horizontal speed converted to vertical speed and vice versa");
-        public static final ConfigDouble    INCREASED_FALL_DISTANCE     = new ConfigDouble("fallDistanceThresholdIncrease", 0.0, "ncreases the distance needed to fall in order to take fall damage; this is a server-side setting");
-        // TODO: public static final ConfigBoolean   SPEEDOMETER                 = new ConfigBoolean("speedometer", false, "A Speedometer that is very similar to how MiniHud's speedometer is");
+        // openConfigGui should be defined in Hotkeys.java, right? this isn't where hotkeys go
+        public static final ConfigHotkey    OPEN_CONFIG_GUI               = new ConfigHotkey  ("openConfigGui", "O,C", "Hotkey to open the in-game Config GUI");
+        public static final ConfigBoolean   ENABLED                       = new ConfigBoolean ("enable", true, "Enables/disables all changes to movement");
+        public static final ConfigBoolean   BHOP                          = new ConfigBoolean ("bhop", true, "Enables bunnyhopping and airstrafing"); // TODO
+        public static final ConfigBoolean   UNCAPPED_BHOP_ENABLED         = new ConfigBoolean ("uncappedBunnyhopEnabled", true, "If enabled, the soft and hard speed caps will not be applied at all");
+        public static final ConfigDouble    AIR_ACCELERATE                = new ConfigDouble  ("airAccelerate", 14.0, 0.0, 30.0, "A higher value means you can turn more sharply in the air without losing speed");
+        public static final ConfigDouble    GROUND_ACCELERATE             = new ConfigDouble  ("groundAccelerate", 10.0, 0.0, Double.MAX_VALUE, "A higher value means you accelerate faster on the ground");
+        public static final ConfigDouble    MAX_AIR_ACCELERATION_PER_TICK = new ConfigDouble  ("maxAirAccelerationPerTick", 0.045, 0.0, Double.MAX_VALUE, "Limit for how much you can accelerate in a tick");
+        public static final ConfigDouble    HARD_CAP_THRESHOLD            = new ConfigDouble  ("hardCapThreshold", 0.0, 0.0, Double.MAX_VALUE, "If you jump while above the hard cap speed (moveSpeed*hardCapThreshold), your speed is set to the hard cap speed");
+        public static final ConfigDouble    SOFT_CAP_DEGEN                = new ConfigDouble  ("softCapDegen", 0.65, 0.0, Double.MAX_VALUE, "The modifier used to calculate speed lost when jumping above the soft cap");
+        public static final ConfigDouble    SOFT_CAP_THRESHOLD            = new ConfigDouble  ("softCapThreshold", 1.4, 0.0, Double.MAX_VALUE, "See uncappedBunnyhopEnabled and softCapDegen; soft cap speed = (moveSpeed*softCapThreshold)");
+        public static final ConfigBoolean   SHARK                         = new ConfigBoolean ("shark", false, "Enables sharking");
+        public static final ConfigDouble    SHARK_SURFACE_TENSION         = new ConfigDouble  ("sharkingSurfaceTension", 0.2, 0.0, Double.MAX_VALUE, "Amount of downward momentum you lose while entering water, a higher value means that you are able to shark after hitting the water from higher up");
+        public static final ConfigDouble    SHARK_WATER_FRICTION          = new ConfigDouble  ("sharkingWaterFriction", 0.1, 0.0, 1.0, "Amount of friction while sharking (between 0 and 1)");
+        public static final ConfigBoolean   TRIMP                         = new ConfigBoolean ("trimping", false, "Enables trimping");
+        public static final ConfigDouble    TRIMP_MULTIPLIER              = new ConfigDouble  ("trimpMultiplier", 1.4, 0.0, Double.MAX_VALUE, "A lower value means less horizontal speed converted to vertical speed");
+        public static final ConfigDouble    INCREASED_FALL_DISTANCE       = new ConfigDouble  ("fallDistanceThresholdIncrease", 0.0, 0.0, Double.MAX_VALUE, "Increases the distance needed to fall in order to take fall damage (singleplayer only)");
+        // TODO: public static final ConfigBoolean   SPEEDOMETER          = new ConfigBoolean ("speedometer", false, "A Speedometer that is very similar to how MiniHud's speedometer is");
 
         public static final ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
             OPEN_CONFIG_GUI,
