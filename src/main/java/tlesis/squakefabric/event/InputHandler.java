@@ -6,7 +6,7 @@ import fi.dy.masa.malilib.hotkeys.IKeybindProvider;
 import fi.dy.masa.malilib.hotkeys.IKeyboardInputHandler;
 import fi.dy.masa.malilib.hotkeys.IMouseInputHandler;
 import tlesis.squakefabric.Reference;
-import tlesis.squakefabric.config.Hotkey;
+import tlesis.squakefabric.config.Hotkeys;
 
 public class InputHandler implements IKeybindProvider, IKeyboardInputHandler, IMouseInputHandler {
     
@@ -20,13 +20,13 @@ public class InputHandler implements IKeybindProvider, IKeyboardInputHandler, IM
 
     @Override
     public void addKeysToMap(IKeybindManager manager) {
-        for (IHotkey hotkey : Hotkey.HOTKEY_LIST) {
+        for (IHotkey hotkey : Hotkeys.HOTKEY_LIST) {
             manager.addKeybindToMap(hotkey.getKeybind());
         }
     }
 
     @Override
     public void addHotkeys(IKeybindManager manager) {
-        manager.addHotkeysForCategory(Reference.MOD_NAME, "squake.hotkeys.category.generic_hotkeys", Hotkey.HOTKEY_LIST);
+        manager.addHotkeysForCategory(Reference.MOD_NAME, "squake.hotkeys.category.generic_hotkeys", Hotkeys.HOTKEY_LIST);
     }
 }

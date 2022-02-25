@@ -1,6 +1,5 @@
 package tlesis.squakefabric.client;
 
-import tlesis.squakefabric.ModConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -14,6 +13,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.chunk.ChunkStatus;
+import tlesis.squakefabric.ModConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +27,9 @@ public class QuakeClientPlayer {
 
     private static final List<float[]> baseVelocities = new ArrayList<>();
 
-
-
     public static boolean moveEntityWithHeading(PlayerEntity player, float sidemove,float forwardmove) {
 
-        if(!player.world.isClient) {
+        if (!player.world.isClient) {
             return false;
         }
 
@@ -59,7 +57,7 @@ public class QuakeClientPlayer {
 
     public static void beforeOnLivingUpdate(PlayerEntity player) {
 
-        if(!player.world.isClient) {
+        if (!player.world.isClient) {
             return;
         }
 
@@ -79,7 +77,7 @@ public class QuakeClientPlayer {
     }
 
     public static boolean moveRelative(PlayerEntity player, float sidemove, float forwardmove, float friction) {
-        if(!player.world.isClient) {
+        if (!player.world.isClient) {
             return false;
         }
 
@@ -103,7 +101,7 @@ public class QuakeClientPlayer {
     }
 
     public static void afterJump(PlayerEntity player) {
-        if(!player.world.isClient) {
+        if (!player.world.isClient) {
             return;
         }
 
@@ -157,7 +155,7 @@ public class QuakeClientPlayer {
     private static float getSlipperiness(PlayerEntity player) {
         float f2 = 1.0F;
 
-        if(player.isOnGround()) {
+        if (player.isOnGround()) {
             BlockPos groundPos = new BlockPos(MathHelper.floor(player.getX()), MathHelper.floor(player.getBoundingBox().minY) - 1, MathHelper.floor(player.getZ()));
             f2 = 1.0F - PlayerAPI.getSlipperiness(player, groundPos);
         }
@@ -241,10 +239,10 @@ public class QuakeClientPlayer {
 
         double Y = getMotionY(player);
 
-        if(player.world.isClient && (!player.world.isPosLoaded((int) player.getX(), (int) player.getZ()) 
+        if (player.world.isClient && (!player.world.isPosLoaded((int)player.getX(), (int)player.getZ()) 
                 || player.world.getChunk(new BlockPos((int) player.getX(), (int) player.getY(), (int) player.getZ())).getStatus()
                     != ChunkStatus.FULL)) {
-            if(player.getY() > 0.0D) {
+            if (player.getY() > 0.0D) {
                 Y = -0.1D;
             } else {
                 Y = 0.0D;
@@ -589,11 +587,11 @@ public class QuakeClientPlayer {
         if (!isSharking || curspeed < 0.078F) {
             minecraft_WaterMove(player, sidemove, forwardmove);
         } else {
-            if(curspeed > 0.09) {
+            if (curspeed > 0.09) {
                 quake_ApplyWaterFriction(player, ModConfig.SHARKING_WATER_FRICTION);
             }
 
-            if(curspeed > 0.098){
+            if (curspeed > 0.098){
                 quake_AirAccelerate(player, wishspeed, wishdir[0], wishdir[1], ModConfig.ACCELERATE);
             } else {
                 quake_Accelerate(player, .0980F, wishdir[0], wishdir[1], ModConfig.ACCELERATE);

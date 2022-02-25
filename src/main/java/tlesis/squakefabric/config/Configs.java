@@ -18,12 +18,12 @@ import tlesis.squakefabric.Reference;
 
 public class Configs implements IConfigHandler {
 
-    private static final String CONFIG_FILE_NAME = "mixins." + Reference.MOD_ID + ".json";
+    private static final String CONFIG_FILE_NAME = Reference.MOD_ID + ".json";
     
     public static class Generic {
         public static final ConfigHotkey    OPEN_CONFIG_GUI             = new ConfigHotkey("openConfigGui", "O,C", "A hotkey to open the in-game Config GUI");
         public static final ConfigBoolean   ENABLED                     = new ConfigBoolean("enable", true, "Turns off/on the quake-style movement for the client");
-        public static final ConfigBoolean   BHOP                        = new ConfigBoolean("bhop", true, "Bunny Hopping is a movement technique where the player can increase their speed by constantly jumping whilst air-strafing.");
+        public static final ConfigBoolean   BHOP                        = new ConfigBoolean("bhop", true, "Bunny Hopping is a movement technique where the player can increase their speed by constantly jumping whilst air-strafing."); // TODO
         public static final ConfigBoolean   UNCAPPED_BHOP_ENABLED       = new ConfigBoolean("uncappedBunnyhopEnabled", true, "f enabled, the soft and hard caps will not be applied at all");
         public static final ConfigDouble    AIR_ACCELERATE              = new ConfigDouble("airAccelerate", 14.0, "A higher value means you can turn more sharply in the air without losing speed");
         public static final ConfigDouble    GROUND_ACCELERATE           = new ConfigDouble("groundAccelerate", 10.0, "A higher value means you accelerate faster on the ground");
@@ -36,6 +36,7 @@ public class Configs implements IConfigHandler {
         public static final ConfigDouble    SHARK_WATER_FRICTION        = new ConfigDouble("sharkingWaterFriction", 0.1, "Amount of friction while sharking (between 0 and 1)");
         public static final ConfigBoolean   TRIMP                       = new ConfigBoolean("trimping", false, "If you're moving fast enough, holding sneak while jumping will convert some of your horizontal speed into vertical speed.");
         public static final ConfigDouble    TRIMP_MULTIPLIER            = new ConfigDouble("trimpMultiplier", 1.4, "a lower value means less horizontal speed converted to vertical speed and vice versa");
+        public static final ConfigDouble    INCREASED_FALL_DISTANCE     = new ConfigDouble("fallDistanceThresholdIncrease", 0.0, "ncreases the distance needed to fall in order to take fall damage; this is a server-side setting");
         // TODO: public static final ConfigBoolean   SPEEDOMETER                 = new ConfigBoolean("speedometer", false, "A Speedometer that is very similar to how MiniHud's speedometer is");
 
         public static final ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(

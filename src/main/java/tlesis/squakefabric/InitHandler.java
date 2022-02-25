@@ -8,14 +8,13 @@ import fi.dy.masa.malilib.event.TickHandler;
 import fi.dy.masa.malilib.event.WorldLoadHandler;
 import fi.dy.masa.malilib.interfaces.IInitializationHandler;
 import fi.dy.masa.malilib.interfaces.IRenderer;
+import fi.dy.masa.malilib.network.ClientPacketChannelHandler;
 import tlesis.squakefabric.config.Configs;
-import tlesis.squakefabric.config.Hotkey;
-import tlesis.squakefabric.data.DataManager;
-import tlesis.squakefabric.data.FileMigrationUtils;
 import tlesis.squakefabric.event.InputHandler;
+import tlesis.squakefabric.event.KeyCallbacks;
 import tlesis.squakefabric.event.RenderHandler;
 import tlesis.squakefabric.event.WorldLoadListener;
-import tlesis.squakefabric.render.infohud.StatusInfoRenderer;
+import tlesis.squakefabric.network.CarpetHelloPacketHandler;
 import tlesis.squakefabric.scheduler.ClientTickHandler;
 
 public class InitHandler implements IInitializationHandler {
@@ -40,9 +39,5 @@ public class InitHandler implements IInitializationHandler {
         ClientPacketChannelHandler.getInstance().registerClientChannelHandler(CarpetHelloPacketHandler.INSTANCE);
 
         KeyCallbacks.init(MinecraftClient.getInstance());
-        StatusInfoRenderer.init();
-
-        DataManager.getAreaSelectionsBaseDirectory();
-        DataManager.getSchematicsBaseDirectory();
     }
 }
