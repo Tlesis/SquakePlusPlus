@@ -239,7 +239,7 @@ public class QuakeClientPlayer {
 
         double Y = getMotionY(player);
 
-        if (player.world.isClient && (!player.world.isPosLoaded((int)player.getX(), (int)player.getZ()) 
+        if (player.world.isClient && (!player.world.isChunkLoaded((int)player.getX(), (int)player.getZ()) 
                 || player.world.getChunk(new BlockPos((int) player.getX(), (int) player.getY(), (int) player.getZ())).getStatus()
                     != ChunkStatus.FULL)) {
             if (player.getY() > 0.0D) {

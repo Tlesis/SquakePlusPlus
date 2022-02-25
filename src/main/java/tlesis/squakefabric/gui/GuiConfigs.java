@@ -9,6 +9,7 @@ import fi.dy.masa.malilib.gui.button.ButtonBase;
 import fi.dy.masa.malilib.gui.button.ButtonGeneric;
 import fi.dy.masa.malilib.gui.button.IButtonActionListener;
 import fi.dy.masa.malilib.util.StringUtils;
+import tlesis.squakefabric.ModConfig;
 import tlesis.squakefabric.Reference;
 import tlesis.squakefabric.config.Configs;
 import tlesis.squakefabric.data.DataManager;
@@ -69,6 +70,7 @@ public class GuiConfigs extends GuiConfigsBase {
     protected void onSettingsChanged() {
         super.onSettingsChanged();
 
+        new ModConfig();
         System.out.println("Settings changed");
     }
 
