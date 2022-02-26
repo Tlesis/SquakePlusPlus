@@ -19,8 +19,8 @@ import org.tlesis.squakefabric.data.DataManager;
 
 public class GuiConfigs extends GuiConfigsBase {
 
-    public static List<FeatureToggle> TOGGLE_LIST = ImmutableList.copyOf(FeatureToggle.VALUES);
-    
+    public static ImmutableList<FeatureToggle> TOGGLE_LIST = FeatureToggle.VALUES;
+
     public GuiConfigs() {
         super(10, 50, Reference.MOD_ID, null, "squake.gui.title.configs", String.format("%s", Reference.MOD_VERSION));
     }

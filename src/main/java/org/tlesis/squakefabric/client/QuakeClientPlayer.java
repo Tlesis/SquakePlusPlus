@@ -111,7 +111,7 @@ public class QuakeClientPlayer {
             return;
         }
 
-        if(!Configs.Generic.HL2_OLD_ENGINE_BHOP.getBooleanValue()) {
+        if(!FeatureToggle.HL2_OLD_ENGINE_BHOP.getBooleanValue()) {
             if (player.isSprinting()) {
 
 
@@ -409,7 +409,7 @@ public class QuakeClientPlayer {
         } else if ((player.isInLava() && !player.getAbilities().flying)) {
             return false;
         } else if (player.isTouchingWater() && !player.getAbilities().flying) {
-            if (Configs.Generic.SHARK.getBooleanValue()) {
+            if (FeatureToggle.SHARK.getBooleanValue()) {
                 quake_WaterMove(player, sidemove, forwardmove);
             } else {
                 return false;
@@ -454,7 +454,7 @@ public class QuakeClientPlayer {
                 double sv_airaccelerate = Configs.Options.AIR_ACCELERATE.getDoubleValue();
                 quake_AirAccelerate(player, wishspeed, wishdir[0], wishdir[1], sv_airaccelerate);
 
-                if (Configs.Generic.SHARK.getBooleanValue() && Configs.Options.SHARK_SURFACE_TENSION.getDoubleValue() > 0.0D && isJumping(player) && getMotionY(player) < 0.0F) {
+                if (FeatureToggle.SHARK.getBooleanValue() && Configs.Options.SHARK_SURFACE_TENSION.getDoubleValue() > 0.0D && isJumping(player) && getMotionY(player) < 0.0F) {
                     Box boundingBox = player.getBoundingBox().offset(player.getVelocity());
                     boolean isFallingIntoWater = player.world.containsFluid(boundingBox);
 
@@ -496,7 +496,7 @@ public class QuakeClientPlayer {
     }
 
     private static boolean quake_DoTrimp(PlayerEntity player) {
-        if (Configs.Generic.TRIMP.getBooleanValue() && player.isSneaking()) {
+        if (FeatureToggle.TRIMP.getBooleanValue() && player.isSneaking()) {
             double curspeed = getSpeed(player);
             float movespeed = quake_getMaxMoveSpeed(player);
             if (curspeed > movespeed) {
@@ -751,7 +751,7 @@ public class QuakeClientPlayer {
         double X = getMotionX(player);
         double Z = getMotionZ(player);
 
-        if (Configs.Generic.UNCAPPED_BHOP_ENABLED.getBooleanValue()) {
+        if (FeatureToggle.UNCAPPED_BHOP.getBooleanValue()) {
             softCapPercent = 1.0F;
             softCapDegen = 1.0F;
         }
@@ -777,7 +777,7 @@ public class QuakeClientPlayer {
         double X = getMotionX(player);
         double Z = getMotionZ(player);
 
-        if (Configs.Generic.UNCAPPED_BHOP_ENABLED.getBooleanValue()) {
+        if (FeatureToggle.UNCAPPED_BHOP.getBooleanValue()) {
             return;
         }
 

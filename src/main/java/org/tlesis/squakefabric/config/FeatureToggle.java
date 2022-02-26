@@ -20,21 +20,23 @@ import fi.dy.masa.malilib.util.StringUtils;
 
 public enum FeatureToggle implements IHotkeyTogglable, IConfigNotifiable<IConfigBoolean> {
 
-    ENABLED("enable", true, "", "Enables/disables all changes to movement")/*,
-    BHOP("bhop", true, "", "Enables bunnyhopping and airstrafing"),
-    UNCAPPED_BHOP_ENABLED("uncappedBunnyhopEnabled", false, "", "If enabled, the soft and hard speed caps will not be applied at all"),
-    SHARK("shark", false, "", "Enables sharking"),
-    TRIMP("trimping", false, "", "Enables trimping"),
-    HL2_OLD_ENGINE_BHOP("hl2OldEngineBhop", false, "", "Makes Bhopping behave like Half-Life 2: Old Engine Bhopping")*/;
+    ENABLED               ("enable",                  true,  "", "Enables/disables all changes to movement"),
+    BHOP                  ("bhop",                    true,  "", "Enables bunnyhopping and airstrafing"),
+    UNCAPPED_BHOP         ("uncappedBunnyhop",        false, "", "If enabled, the soft and hard speed caps will not be applied at all"),
+    SHARK                 ("shark",                   false, "", "Enables sharking"),
+    TRIMP                 ("trimping",                false, "", "Enables trimping"),
+    HL2_OLD_ENGINE_BHOP   ("hl2OldEngineBhop",        false, "", "Makes Bhopping behave like Half-Life 2 Old Engine bhopping");
     
-    public static final ImmutableList<FeatureToggle> VALUES = ImmutableList.of(
-        ENABLED/*,
-        BHOP,
-        UNCAPPED_BHOP_ENABLED,
-        SHARK,
-        TRIMP,
-        HL2_OLD_ENGINE_BHOP*/
-    );
+    public static final ImmutableList<FeatureToggle> VALUES = ImmutableList.copyOf(values());
+
+    // public static final ImmutableList<FeatureToggle> VALUES = ImmutableList.of(
+    //     ENABLED/*,
+    //     BHOP,
+    //     UNCAPPED_BHOP_ENABLED,
+    //     SHARK,
+    //     TRIMP,
+    //     HL2_OLD_ENGINE_BHOP*/
+    // );
 
     private final String name;
     private final String comment;
@@ -58,7 +60,7 @@ public enum FeatureToggle implements IHotkeyTogglable, IConfigNotifiable<IConfig
     }
 
     FeatureToggle(String name, boolean defaultValue, boolean singlePlayer, String defaultHotkey, KeybindSettings settings, String comment) {
-        this(name, defaultValue, singlePlayer, defaultHotkey, settings, comment, StringUtils.splitCamelCase(name.substring(5)));
+        this(name, defaultValue, singlePlayer, defaultHotkey, settings, comment, StringUtils.splitCamelCase(name));
     }
 
     FeatureToggle(String name, boolean defaultValue, String defaultHotkey, String comment, String prettyName) {

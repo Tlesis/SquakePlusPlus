@@ -9,7 +9,6 @@ import com.google.gson.JsonObject;
 import fi.dy.masa.malilib.config.ConfigUtils;
 import fi.dy.masa.malilib.config.IConfigBase;
 import fi.dy.masa.malilib.config.IConfigHandler;
-import fi.dy.masa.malilib.config.options.ConfigBoolean;
 import fi.dy.masa.malilib.config.options.ConfigDouble;
 import fi.dy.masa.malilib.util.FileUtils;
 import fi.dy.masa.malilib.util.JsonUtils;
@@ -20,24 +19,24 @@ public class Configs implements IConfigHandler {
     private static final String CONFIG_FILE_NAME = Reference.MOD_ID + ".json";
     
     public static class Generic {
-        public static final ConfigBoolean   BHOP                          = new ConfigBoolean ("bhop", true, "Enables bunnyhopping and airstrafing"); // TODO
-        public static final ConfigBoolean   UNCAPPED_BHOP_ENABLED         = new ConfigBoolean ("uncappedBunnyhopEnabled", false, "If enabled, the soft and hard speed caps will not be applied at all");
-        public static final ConfigBoolean   SHARK                         = new ConfigBoolean ("shark", false, "Enables sharking");
-        public static final ConfigBoolean   TRIMP                         = new ConfigBoolean ("trimping", false, "Enables trimping");
-        public static final ConfigBoolean   HL2_OLD_ENGINE_BHOP           = new ConfigBoolean ("hl2OldEngineBhop", false, "Makes Bhopping behave like Half-Life 2: Old Engine Bhopping");
+        // public static final ConfigBoolean   BHOP                          = new ConfigBoolean ("bhop", true, "Enables bunnyhopping and airstrafing"); // TODO
+        // public static final ConfigBoolean   UNCAPPED_BHOP_ENABLED         = new ConfigBoolean ("uncappedBunnyhopEnabled", false, "If enabled, the soft and hard speed caps will not be applied at all");
+        // public static final ConfigBoolean   SHARK                         = new ConfigBoolean ("shark", false, "Enables sharking");
+        // public static final ConfigBoolean   TRIMP                         = new ConfigBoolean ("trimping", false, "Enables trimping");
+        // public static final ConfigBoolean   HL2_OLD_ENGINE_BHOP           = new ConfigBoolean ("hl2OldEngineBhop", false, "Makes Bhopping behave like Half-Life 2: Old Engine Bhopping");
         // TODO: public static final ConfigBoolean   SPEEDOMETER          = new ConfigBoolean ("speedometer", false, "A Speedometer that is very similar to how MiniHud's speedometer is");
 
         public static final ImmutableList<IConfigBase> GENERIC = ImmutableList.of(
-            BHOP,
-            UNCAPPED_BHOP_ENABLED,
+            // BHOP,
+            // UNCAPPED_BHOP_ENABLED,
 
-            SHARK,
+            // SHARK,
 
-            TRIMP,
+            // TRIMP,
 
-            HL2_OLD_ENGINE_BHOP/*,
+            // HL2_OLD_ENGINE_BHOP/*,
 
-            SPEEDOMETER */
+            // SPEEDOMETER */
         );
     }
 
