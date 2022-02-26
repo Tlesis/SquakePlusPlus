@@ -6,6 +6,6 @@ public class ModConfig {
 
     public static boolean BHOP_ENABLED = Configs.Generic.BHOP.getBooleanValue();
     
-    public static double INCREASED_FALL_DISTANCE = Configs.Generic.INCREASED_FALL_DISTANCE.getDoubleValue();
+    public static double INCREASED_FALL_DISTANCE = Configs.Options.INCREASED_FALL_DISTANCE.getDoubleValue();
 
 }

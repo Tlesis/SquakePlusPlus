@@ -24,7 +24,6 @@ public class InitHandler implements IInitializationHandler {
 
         InputEventHandler.getKeybindManager().registerKeybindProvider(InputHandler.getInstance());
         InputEventHandler.getInputManager().registerKeyboardInputHandler(InputHandler.getInstance());
-        InputEventHandler.getInputManager().registerMouseInputHandler(InputHandler.getInstance());
 
         IRenderer renderer = new RenderHandler();
         RenderEventHandler.getInstance().registerGameOverlayRenderer(renderer);

@@ -20,7 +20,7 @@ public class DataManager {
 
     private static final Map<String, File> LAST_DIRECTORIES = new HashMap<>();
 
-    private static ConfigGuiTab configGuiTab = ConfigGuiTab.GENERIC;
+    private static ConfigGuiTab configGuiTab = ConfigGuiTab.FEATURE_TOGGLE;
     private static boolean canSave;
     private static boolean isCarpetServer;
 
@@ -63,7 +63,7 @@ public class DataManager {
                 } catch (Exception e) {}
 
                 if (configGuiTab == null) {
-                    configGuiTab = ConfigGuiTab.GENERIC;
+                    configGuiTab = ConfigGuiTab.OPTIONS;
                 }
             }
         }

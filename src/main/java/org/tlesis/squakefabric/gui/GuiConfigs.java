@@ -3,7 +3,10 @@ package org.tlesis.squakefabric.gui;
 import java.util.Collections;
 import java.util.List;
 
+import com.google.common.collect.ImmutableList;
+
 import fi.dy.masa.malilib.config.IConfigBase;
+import fi.dy.masa.malilib.config.options.BooleanHotkeyGuiWrapper;
 import fi.dy.masa.malilib.gui.GuiConfigsBase;
 import fi.dy.masa.malilib.gui.button.ButtonBase;
 import fi.dy.masa.malilib.gui.button.ButtonGeneric;
@@ -11,12 +14,15 @@ import fi.dy.masa.malilib.gui.button.IButtonActionListener;
 import fi.dy.masa.malilib.util.StringUtils;
 import org.tlesis.squakefabric.Reference;
 import org.tlesis.squakefabric.config.Configs;
+import org.tlesis.squakefabric.config.FeatureToggle;
 import org.tlesis.squakefabric.data.DataManager;
 
 public class GuiConfigs extends GuiConfigsBase {
+
+    public static List<FeatureToggle> TOGGLE_LIST = ImmutableList.copyOf(FeatureToggle.VALUES);
     
     public GuiConfigs() {
-        super(10, 50, Reference.MOD_ID, null, "squake.gui.title.configs");
+        super(10, 50, Reference.MOD_ID, null, "squake.gui.title.configs", String.format("%s", Reference.MOD_VERSION));
     }
 
     @Override
@@ -27,11 +33,12 @@ public class GuiConfigs extends GuiConfigsBase {
         int x = 10;
         int y = 26;
 
+        x += this.createButton(x, y, -1, ConfigGuiTab.FEATURE_TOGGLE);
         x += this.createButton(x, y, -1, ConfigGuiTab.GENERIC);
+        x += this.createButton(x, y, -1, ConfigGuiTab.OPTIONS);
     }
 
-    private int createButton(int x, int y, int width, ConfigGuiTab tab)
-    {
+    private int createButton(int x, int y, int width, ConfigGuiTab tab) {
         ButtonGeneric button = new ButtonGeneric(x, y, width, 20, tab.getDisplayName());
         button.setEnabled(DataManager.getConfigGuiTab() != tab);
         this.addButton(button, new ButtonListener(tab, this));
@@ -40,29 +47,45 @@ public class GuiConfigs extends GuiConfigsBase {
     }
 
     @Override
-    protected int getConfigWidth()
-    {
+    protected int getConfigWidth() {
         ConfigGuiTab tab = DataManager.getConfigGuiTab();
 
-        if (tab == ConfigGuiTab.GENERIC) {
+        if (tab == ConfigGuiTab.OPTIONS) {
             return 140;
         }
 
-        return super.getConfigWidth();
+        return 260;
     }
+
+    /* @Override
+    protected boolean useKeybindSearch() {
+        return DataManager.getConfigGuiTab() == ConfigGuiTab.FEATURE_TOGGLE || 
+               DataManager.getConfigGuiTab() == ConfigGuiTab.OPTIONS;
+    } */
 
     @Override
     public List<ConfigOptionWrapper> getConfigs() {
         List<? extends IConfigBase> configs;
         ConfigGuiTab tab = DataManager.getConfigGuiTab();
 
-        if (tab == ConfigGuiTab.GENERIC) {
-            configs = Configs.Generic.OPTIONS;
+        if (tab == ConfigGuiTab.OPTIONS) {
+            configs = Configs.Options.OPTIONS;
+
+        } else if(tab == ConfigGuiTab.FEATURE_TOGGLE) {
+            return ConfigOptionWrapper.createFor(TOGGLE_LIST.stream().map(this::wrapConfig).toList());
+ 
+        } else if (tab == ConfigGuiTab.GENERIC) {
+            configs = Configs.Generic.GENERIC;
         } else {
             return Collections.emptyList();
         }
 
         return ConfigOptionWrapper.createFor(configs);
+    }
+
+    protected BooleanHotkeyGuiWrapper wrapConfig(FeatureToggle config)
+    {
+        return new BooleanHotkeyGuiWrapper(config.getName(), config, config.getKeybind());
     }
 
     @Override
@@ -73,7 +96,6 @@ public class GuiConfigs extends GuiConfigsBase {
     }
 
     private static class ButtonListener implements IButtonActionListener {
-        @SuppressWarnings("unused")
         private final GuiConfigs parent;
         private final ConfigGuiTab tab;
 
@@ -85,11 +107,15 @@ public class GuiConfigs extends GuiConfigsBase {
         @Override
         public void actionPerformedWithButton(ButtonBase button, int mouseButton) {
             DataManager.setConfigGuiTab(this.tab);
+
+            this.parent.initGui();
         }
     }
 
     public enum ConfigGuiTab {
-        GENERIC("squake.gui.button.config_gui.generic");
+        GENERIC         ("squake.gui.button.config_gui.generic"),
+        OPTIONS         ("squake.gui.button.config_gui.options"),
+        FEATURE_TOGGLE  ("squake.gui.button.config_gui.feature_toggle");
 
         private final String translationKey;
 
