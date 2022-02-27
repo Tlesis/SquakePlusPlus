@@ -26,6 +26,7 @@ public enum FeatureToggle implements IHotkeyTogglable, IConfigNotifiable<IConfig
     SHARK                 ("Sharking",                  false, "", "Enables sharking"),
     TRIMP                 ("Trimping",                  false, "", "Enables trimping"),
     HL2_OLD_ENGINE_BHOP   ("HL2 Old Engine Bhop",       false, "", "Makes Bhopping behave like Half-Life 2 Old Engine bhopping"),
+    JUMP_SPAM             ("Jump Spam",                 true,  "", "Spams jump rather than having the cooldown"),
     SPEEDOMETER           ("Speedometer",               false, "", "Its just a Speedometer");
     
     public static final ImmutableList<FeatureToggle> VALUES = ImmutableList.copyOf(values());
