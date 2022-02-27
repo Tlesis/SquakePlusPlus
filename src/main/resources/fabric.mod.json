@@ -14,10 +14,10 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "org.tlesis.squakefabric.client.SquakeFabricClient"
+      "org.tlesis.squakeplusplus.client.SquakePlusPlusClient"
     ],
     "main": [
-      "org.tlesis.squakefabric.SquakeFabric"
+      "org.tlesis.squakeplusplus.SquakePlusPlus"
     ]
   },
   "mixins": [
