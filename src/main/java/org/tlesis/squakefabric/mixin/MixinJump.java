@@ -18,19 +18,13 @@ public abstract class MixinJump extends Entity {
         super(type, world);
     }
 
-    private LivingEntity livingEntity;
-
     @Shadow int jumpingCooldown;
     
-    @Inject(method = "tickMovement", at = @At("HEAD"))
+    @Inject(method = "tickMovement", at = @At(value = "HEAD"))
     public void tickMovement(CallbackInfo ci) {
 
-        if (this.livingEntity != null) {
-            System.out.println("LivingEntity Not Null");
-            if (((MixinJump) (Object) livingEntity).jumpingCooldown > 0) {
-                ((MixinJump) (Object) livingEntity).jumpingCooldown = 0;
-                System.out.println(String.format("Set JumpCooldown to %d", ((MixinJump) (Object) livingEntity).jumpingCooldown));
-            }
+        if (jumpingCooldown > 0) {
+            jumpingCooldown = 0;
         }
     }
 }
