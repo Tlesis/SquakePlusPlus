@@ -1,4 +1,4 @@
-package tlesis.squakefabric.client;
+package org.tlesis.squakefabric.client;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;

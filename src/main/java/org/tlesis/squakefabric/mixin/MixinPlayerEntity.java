@@ -1,4 +1,4 @@
-package tlesis.squakefabric.mixin;
+package org.tlesis.squakefabric.mixin;
 
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,10 +10,10 @@ import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static tlesis.squakefabric.client.QuakeClientPlayer.*;
+import static org.tlesis.squakefabric.client.QuakeClientPlayer.*;
 
 @Mixin(PlayerEntity.class)
-public class PlayerEntityMixin {
+public class MixinPlayerEntity {
     @Inject(method = "jump", at = @At("TAIL"))
     public void jumpInject(CallbackInfo ci) {
         PlayerEntity player = ((PlayerEntity)(Object)this);
