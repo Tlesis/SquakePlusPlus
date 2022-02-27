@@ -63,7 +63,7 @@ public class DataManager {
                 } catch (Exception e) {}
 
                 if (configGuiTab == null) {
-                    configGuiTab = ConfigGuiTab.OPTIONS;
+                    configGuiTab = ConfigGuiTab.FEATURE_TOGGLE;
                 }
             }
         }

@@ -20,23 +20,15 @@ import fi.dy.masa.malilib.util.StringUtils;
 
 public enum FeatureToggle implements IHotkeyTogglable, IConfigNotifiable<IConfigBoolean> {
 
-    ENABLED               ("enable",                  true,  "", "Enables/disables all changes to movement"),
-    BHOP                  ("bhop",                    true,  "", "Enables bunnyhopping and airstrafing"),
-    UNCAPPED_BHOP         ("uncappedBunnyhop",        false, "", "If enabled, the soft and hard speed caps will not be applied at all"),
-    SHARK                 ("shark",                   false, "", "Enables sharking"),
-    TRIMP                 ("trimping",                false, "", "Enables trimping"),
-    HL2_OLD_ENGINE_BHOP   ("hl2OldEngineBhop",        false, "", "Makes Bhopping behave like Half-Life 2 Old Engine bhopping");
+    ENABLED               ("Squake",                    true,  "", "Enables/disables all changes to movement"),
+    BHOP                  ("Bhopping",                  true,  "", "Enables bunnyhopping and airstrafing"),
+    UNCAPPED_BHOP         ("Uncapped Bhopping",         false, "", "If enabled, the soft and hard speed caps will not be applied at all"),
+    SHARK                 ("Sharking",                  false, "", "Enables sharking"),
+    TRIMP                 ("Trimping",                  false, "", "Enables trimping"),
+    HL2_OLD_ENGINE_BHOP   ("HL2 Old Engine Bhop",       false, "", "Makes Bhopping behave like Half-Life 2 Old Engine bhopping"),
+    SPEEDOMETER           ("Speedometer",               false, "", "Its just a Speedometer");
     
     public static final ImmutableList<FeatureToggle> VALUES = ImmutableList.copyOf(values());
-
-    // public static final ImmutableList<FeatureToggle> VALUES = ImmutableList.of(
-    //     ENABLED/*,
-    //     BHOP,
-    //     UNCAPPED_BHOP_ENABLED,
-    //     SHARK,
-    //     TRIMP,
-    //     HL2_OLD_ENGINE_BHOP*/
-    // );
 
     private final String name;
     private final String comment;
@@ -96,8 +88,7 @@ public enum FeatureToggle implements IHotkeyTogglable, IConfigNotifiable<IConfig
     public String getConfigGuiDisplayName() {
         String name = StringUtils.getTranslatedOrFallback("config.name." + this.getName().toLowerCase(), this.getName());
 
-        if (this.singlePlayer)
-        {
+        if (this.singlePlayer) {
             return GuiBase.TXT_GOLD + name + GuiBase.TXT_RST;
         }
 
@@ -105,50 +96,40 @@ public enum FeatureToggle implements IHotkeyTogglable, IConfigNotifiable<IConfig
     }
     
     @Override
-    public String getPrettyName()
-    {
+    public String getPrettyName() {
         return this.prettyName;
     }
 
     @Override
-    public String getStringValue()
-    {
+    public String getStringValue() {
         return String.valueOf(this.valueBoolean);
     }
 
     @Override
-    public String getDefaultStringValue()
-    {
+    public String getDefaultStringValue() {
         return String.valueOf(this.defaultValueBoolean);
     }
 
     @Override
-    public void setValueFromString(String value)
-    {
-    }
+    public void setValueFromString(String value) {}
 
     @Override
-    public void onValueChanged()
-    {
-        if (this.callback != null)
-        {
+    public void onValueChanged() {
+        if (this.callback != null) {
             this.callback.onValueChanged(this);
         }
     }
 
     @Override
-    public void setValueChangeCallback(IValueChangeCallback<IConfigBoolean> callback)
-    {
+    public void setValueChangeCallback(IValueChangeCallback<IConfigBoolean> callback) {
         this.callback = callback;
     }
 
     @Override
-    public String getComment()
-    {
+    public String getComment() {
         String comment = StringUtils.getTranslatedOrFallback("config.comment." + this.getName().toLowerCase(), this.comment);
 
-        if (comment != null && this.singlePlayer)
-        {
+        if (comment != null && this.singlePlayer) {
             return comment + "\n" + StringUtils.translate("tweakeroo.label.config_comment.single_player_only");
         }
 
@@ -156,75 +137,59 @@ public enum FeatureToggle implements IHotkeyTogglable, IConfigNotifiable<IConfig
     }
 
     @Override
-    public IKeybind getKeybind()
-    {
+    public IKeybind getKeybind() {
         return this.keybind;
     }
 
     @Override
-    public boolean getBooleanValue()
-    {
+    public boolean getBooleanValue() {
         return this.valueBoolean;
     }
 
     @Override
-    public boolean getDefaultBooleanValue()
-    {
+    public boolean getDefaultBooleanValue() {
         return this.defaultValueBoolean;
     }
 
     @Override
-    public void setBooleanValue(boolean value)
-    {
+    public void setBooleanValue(boolean value) {
         boolean oldValue = this.valueBoolean;
         this.valueBoolean = value;
 
-        if (oldValue != this.valueBoolean)
-        {
+        if (oldValue != this.valueBoolean) {
             this.onValueChanged();
         }
     }
 
     @Override
-    public boolean isModified()
-    {
+    public boolean isModified() {
         return this.valueBoolean != this.defaultValueBoolean;
     }
 
     @Override
-    public boolean isModified(String newValue)
-    {
+    public boolean isModified(String newValue) {
         return Boolean.parseBoolean(newValue) != this.defaultValueBoolean;
     }
 
     @Override
-    public void resetToDefault()
-    {
+    public void resetToDefault() {
         this.valueBoolean = this.defaultValueBoolean;
     }
 
     @Override
-    public JsonElement getAsJsonElement()
-    {
+    public JsonElement getAsJsonElement() {
         return new JsonPrimitive(this.valueBoolean);
     }
 
     @Override
-    public void setValueFromJsonElement(JsonElement element)
-    {
-        try
-        {
-            if (element.isJsonPrimitive())
-            {
+    public void setValueFromJsonElement(JsonElement element) {
+        try {
+            if (element.isJsonPrimitive()) {
                 this.valueBoolean = element.getAsBoolean();
-            }
-            else
-            {
+            } else {
                 SquakeFabric.logger.warn("Failed to set config value for '{}' from the JSON element '{}'", this.getName(), element);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             SquakeFabric.logger.warn("Failed to set config value for '{}' from the JSON element '{}'", this.getName(), element, e);
         }
     }

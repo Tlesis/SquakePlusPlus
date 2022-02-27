@@ -34,7 +34,6 @@ public class GuiConfigs extends GuiConfigsBase {
         int y = 26;
 
         x += this.createButton(x, y, -1, ConfigGuiTab.FEATURE_TOGGLE);
-        x += this.createButton(x, y, -1, ConfigGuiTab.GENERIC);
         x += this.createButton(x, y, -1, ConfigGuiTab.OPTIONS);
     }
 
@@ -57,11 +56,11 @@ public class GuiConfigs extends GuiConfigsBase {
         return 260;
     }
 
-    /* @Override
+    @Override
     protected boolean useKeybindSearch() {
         return DataManager.getConfigGuiTab() == ConfigGuiTab.FEATURE_TOGGLE || 
                DataManager.getConfigGuiTab() == ConfigGuiTab.OPTIONS;
-    } */
+    }
 
     @Override
     public List<ConfigOptionWrapper> getConfigs() {
@@ -74,8 +73,6 @@ public class GuiConfigs extends GuiConfigsBase {
         } else if(tab == ConfigGuiTab.FEATURE_TOGGLE) {
             return ConfigOptionWrapper.createFor(TOGGLE_LIST.stream().map(this::wrapConfig).toList());
  
-        } else if (tab == ConfigGuiTab.GENERIC) {
-            configs = Configs.Generic.GENERIC;
         } else {
             return Collections.emptyList();
         }
@@ -113,7 +110,6 @@ public class GuiConfigs extends GuiConfigsBase {
     }
 
     public enum ConfigGuiTab {
-        GENERIC         ("squake.gui.button.config_gui.generic"),
         OPTIONS         ("squake.gui.button.config_gui.options"),
         FEATURE_TOGGLE  ("squake.gui.button.config_gui.feature_toggle");
 
