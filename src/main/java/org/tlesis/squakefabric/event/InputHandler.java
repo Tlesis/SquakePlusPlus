@@ -8,7 +8,7 @@ import fi.dy.masa.malilib.hotkeys.IKeyboardInputHandler;
 
 import org.tlesis.squakefabric.Reference;
 import org.tlesis.squakefabric.config.FeatureToggle;
-import org.tlesis.squakefabric.config.Hotkeys;
+import org.tlesis.squakefabric.config.Configs.Options;
 
 public class InputHandler implements IKeybindProvider, IKeyboardInputHandler {
     
@@ -29,14 +29,14 @@ public class InputHandler implements IKeybindProvider, IKeyboardInputHandler {
             manager.addKeybindToMap(toggle.getKeybind());
         }
 
-        for (IHotkey hotkey : Hotkeys.HOTKEY_LIST) {
+        for (IHotkey hotkey : Options.HOTKEY_LIST) {
             manager.addKeybindToMap(hotkey.getKeybind());
         }
     }
 
     @Override
     public void addHotkeys(IKeybindManager manager) {
-        manager.addHotkeysForCategory(Reference.MOD_NAME, "squake.hotkeys.category.generic_hotkeys", Hotkeys.HOTKEY_LIST);
+        manager.addHotkeysForCategory(Reference.MOD_NAME, "squake.hotkeys.category.generic_hotkeys", Options.HOTKEY_LIST);
         manager.addHotkeysForCategory(Reference.MOD_NAME, "squake.hotkeys.category.feature_toggle_hotkeys", ImmutableList.copyOf(FeatureToggle.values()));
     }
 }

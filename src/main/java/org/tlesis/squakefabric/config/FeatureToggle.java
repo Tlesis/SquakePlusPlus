@@ -22,7 +22,7 @@ public enum FeatureToggle implements IHotkeyTogglable, IConfigNotifiable<IConfig
 
     ENABLED               ("Squake",                    true,  "", "Enables/disables all changes to movement"),
     BHOP                  ("Bhopping",                  true,  "", "Enables bunnyhopping and airstrafing"),
-    UNCAPPED_BHOP         ("Uncapped Bhopping",         false, "", "If enabled, the soft and hard speed caps will not be applied at all"),
+    UNCAPPED_BHOP         ("Uncapped Bhopping",         true,  "", "If enabled, the soft and hard speed caps will not be applied at all"),
     SHARK                 ("Sharking",                  false, "", "Enables sharking"),
     TRIMP                 ("Trimping",                  false, "", "Enables trimping"),
     HL2_OLD_ENGINE_BHOP   ("HL2 Old Engine Bhop",       false, "", "Makes Bhopping behave like Half-Life 2 Old Engine bhopping"),

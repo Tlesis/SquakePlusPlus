@@ -1,6 +1,7 @@
 package org.tlesis.squakefabric.config;
 
 import java.io.File;
+import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 import com.google.gson.JsonElement;
@@ -10,6 +11,7 @@ import fi.dy.masa.malilib.config.ConfigUtils;
 import fi.dy.masa.malilib.config.IConfigBase;
 import fi.dy.masa.malilib.config.IConfigHandler;
 import fi.dy.masa.malilib.config.options.ConfigDouble;
+import fi.dy.masa.malilib.config.options.ConfigHotkey;
 import fi.dy.masa.malilib.util.FileUtils;
 import fi.dy.masa.malilib.util.JsonUtils;
 import org.tlesis.squakefabric.Reference;
@@ -19,7 +21,7 @@ public class Configs implements IConfigHandler {
     private static final String CONFIG_FILE_NAME = Reference.MOD_ID + ".json";
 
     public static class Options {
-        // public static final ConfigHotkey    OPEN_CONFIG_GUI               = new ConfigHotkey("Open GUI",                            "O,C",              "Open the Config GUI");
+        public static final ConfigHotkey    OPEN_CONFIG_GUI               = new ConfigHotkey("Open GUI",                            "O,C",              "Open the Config GUI");
         public static final ConfigDouble    AIR_ACCELERATE                = new ConfigDouble("Air Acceleration",                    10.0, 0.0, 30.0,    "A higher value means you can turn more sharply in the air without losing speed");
         public static final ConfigDouble    GROUND_ACCELERATE             = new ConfigDouble("Acceleration",                        10.0, 0.0, 32767,   "A higher value means you accelerate faster on the ground");
         public static final ConfigDouble    MAX_AIR_ACCELERATION_PER_TICK = new ConfigDouble("Max Air Acceleration Per Tick",       0.05, 0.0, 0.1,     "Limit for how much you can accelerate in a tick");
@@ -32,7 +34,7 @@ public class Configs implements IConfigHandler {
         public static final ConfigDouble    INCREASED_FALL_DISTANCE       = new ConfigDouble("Fall Distance Threshold",             0.0, 0.0, 32767,    "The distance needed to fall in order to take fall damage (singleplayer only)");
 
         public static final ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
-            // OPEN_CONFIG_GUI,
+            OPEN_CONFIG_GUI,
             AIR_ACCELERATE,
             GROUND_ACCELERATE,
             MAX_AIR_ACCELERATION_PER_TICK,
@@ -47,6 +49,10 @@ public class Configs implements IConfigHandler {
 
             INCREASED_FALL_DISTANCE
         );
+
+        public static final List<ConfigHotkey> HOTKEY_LIST = ImmutableList.of(
+            OPEN_CONFIG_GUI
+        );
     }
 
     public static void loadFromFile() {
@@ -59,7 +65,7 @@ public class Configs implements IConfigHandler {
                 JsonObject root = element.getAsJsonObject();
 
                 ConfigUtils.readConfigBase(root, "Options", Options.OPTIONS);
-                ConfigUtils.readConfigBase(root, "Hotkeys", Hotkeys.HOTKEY_LIST);
+                ConfigUtils.readConfigBase(root, "Hotkeys", Options.HOTKEY_LIST);
                 ConfigUtils.readHotkeyToggleOptions(root, "GenericHotkeys", "GenericToggles", FeatureToggle.VALUES); 
             }
         }
@@ -72,7 +78,7 @@ public class Configs implements IConfigHandler {
             JsonObject root = new JsonObject();
 
             ConfigUtils.writeConfigBase(root, "Options", Options.OPTIONS);
-            ConfigUtils.writeConfigBase(root, "Hotkeys", Hotkeys.HOTKEY_LIST);
+            ConfigUtils.writeConfigBase(root, "Hotkeys", Options.HOTKEY_LIST);
             ConfigUtils.writeHotkeyToggleOptions(root, "GenericHotkeys", "GenericToggles", FeatureToggle.VALUES);
 
             JsonUtils.writeJsonToFile(root, new File(dir, CONFIG_FILE_NAME));
