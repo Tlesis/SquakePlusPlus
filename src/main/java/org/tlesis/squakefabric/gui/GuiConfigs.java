@@ -80,8 +80,7 @@ public class GuiConfigs extends GuiConfigsBase {
         return ConfigOptionWrapper.createFor(configs);
     }
 
-    protected BooleanHotkeyGuiWrapper wrapConfig(FeatureToggle config)
-    {
+    protected BooleanHotkeyGuiWrapper wrapConfig(FeatureToggle config) {
         return new BooleanHotkeyGuiWrapper(config.getName(), config, config.getKeybind());
     }
 

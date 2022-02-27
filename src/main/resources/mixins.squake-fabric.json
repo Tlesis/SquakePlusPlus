@@ -7,7 +7,8 @@
   ],
   "client": [
     "MixinPlayerEntity",
-    "MixinEntity"
+    "MixinEntity",
+    "MixinJump"
   ],
   "injectors": {
     "defaultRequire": 1

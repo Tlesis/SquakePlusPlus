@@ -11,10 +11,9 @@ public class ClientTickHandler implements IClientTickHandler {
 
         if (mc.world != null && mc.player != null) {
             TaskScheduler.getInstanceClient().runTasks();
-
         }
         
-        if(mc.player != null) {
+        if (mc.player != null) {
             isJumping = mc.player.input.jumping;
         }
     }
