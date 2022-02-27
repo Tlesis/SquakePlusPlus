@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "id": "squake-fabric",
+  "id": "squakeplusplus",
   "version": "${version}",
-  "name": "Squake Fabric",
-  "description": "Squake mod fabric port",
+  "name": "Squake++",
+  "description": "Squake++ is an improved version of Squake for Fabric",
   "authors": [
     "He11crow",
     "Tlesis",
     "LeviOP"],
   "contact": {},
   "license": "unlicense",
-  "icon": "assets/squake-fabric/icon.png",
+  "icon": "assets/squakeplusplus/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
@@ -21,7 +21,7 @@
     ]
   },
   "mixins": [
-    "mixins.squake-fabric.json"
+    "mixins.squakeplusplus.json"
   ],
   "depends": {
     "fabricloader": ">=0.12.12",
