@@ -35,6 +35,7 @@ public class GuiConfigs extends GuiConfigsBase {
 
         x += this.createButton(x, y, -1, ConfigGuiTab.FEATURE_TOGGLE);
         x += this.createButton(x, y, -1, ConfigGuiTab.OPTIONS);
+        x += this.createButton(x, y, -1, ConfigGuiTab.SPEEDOMETER_OPTIONS);
     }
 
     private int createButton(int x, int y, int width, ConfigGuiTab tab) {
@@ -49,8 +50,10 @@ public class GuiConfigs extends GuiConfigsBase {
     protected int getConfigWidth() {
         ConfigGuiTab tab = DataManager.getConfigGuiTab();
 
-        if (tab == ConfigGuiTab.OPTIONS) {
+        if (tab == ConfigGuiTab.OPTIONS || 
+            tab == ConfigGuiTab.SPEEDOMETER_OPTIONS) {
             return 140;
+            
         } else if (tab == ConfigGuiTab.FEATURE_TOGGLE) {
             return 260;
         }
@@ -70,9 +73,11 @@ public class GuiConfigs extends GuiConfigsBase {
         if (tab == ConfigGuiTab.OPTIONS) {
             configs = Configs.Options.OPTIONS;
 
-        } else if(tab == ConfigGuiTab.FEATURE_TOGGLE) {
+        } else if (tab == ConfigGuiTab.FEATURE_TOGGLE) {
             return ConfigOptionWrapper.createFor(TOGGLE_LIST.stream().map(this::wrapConfig).toList());
  
+        } else if (tab == ConfigGuiTab.SPEEDOMETER_OPTIONS) {
+            configs = Configs.Speedometer.OPTIONS;
         } else {
             return Collections.emptyList();
         }
@@ -111,8 +116,9 @@ public class GuiConfigs extends GuiConfigsBase {
     }
 
     public enum ConfigGuiTab {
-        OPTIONS         ("squake.gui.button.config_gui.options"),
-        FEATURE_TOGGLE  ("squake.gui.button.config_gui.feature_toggle");
+        OPTIONS             ("squake.gui.button.config_gui.options"),
+        FEATURE_TOGGLE      ("squake.gui.button.config_gui.feature_toggle"),
+        SPEEDOMETER_OPTIONS ("squake.gui.button.config_gui.speedometer_options");
 
         private final String translationKey;
 

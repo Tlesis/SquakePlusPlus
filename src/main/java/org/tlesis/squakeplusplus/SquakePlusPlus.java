@@ -11,6 +11,7 @@ public class SquakePlusPlus implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        System.out.println("[Squake++]: Mod Initialize");
         InitializationHandler.getInstance().registerInitializationHandler(new InitHandler());
     }
 }

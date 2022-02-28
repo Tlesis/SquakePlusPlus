@@ -1,8 +1,9 @@
 package org.tlesis.squakeplusplus.scheduler;
 
+import org.tlesis.squakeplusplus.event.RenderHandler;
+
 import fi.dy.masa.malilib.interfaces.IClientTickHandler;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.Entity;
 
 public class ClientTickHandler implements IClientTickHandler {
     public static boolean isJumping = false;
@@ -12,18 +13,11 @@ public class ClientTickHandler implements IClientTickHandler {
 
         if (mc.world != null && mc.player != null) {
             TaskScheduler.getInstanceClient().runTasks();
+            RenderHandler.renderHandler.updateData(mc);
         }
         
         if (mc.player != null) {
-
-            Entity entity = mc.getCameraEntity();
-            
             isJumping = mc.player.input.jumping;
-
-            double dx = entity.getX() - entity.lastRenderX;
-            double dy = entity.getY() - entity.lastRenderY;
-            double dz = entity.getZ() - entity.lastRenderZ;
-            double dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
         }
 
     }
