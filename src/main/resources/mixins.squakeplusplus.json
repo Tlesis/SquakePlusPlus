@@ -8,7 +8,8 @@
   "client": [
     "MixinPlayerEntity",
     "MixinEntity",
-    "MixinJump"
+    "MixinJump",
+    "MixinSpeedometer"
   ],
   "injectors": {
     "defaultRequire": 1

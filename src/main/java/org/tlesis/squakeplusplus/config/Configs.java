@@ -14,6 +14,7 @@ import fi.dy.masa.malilib.config.options.ConfigBoolean;
 import fi.dy.masa.malilib.config.options.ConfigColor;
 import fi.dy.masa.malilib.config.options.ConfigDouble;
 import fi.dy.masa.malilib.config.options.ConfigHotkey;
+import fi.dy.masa.malilib.config.options.ConfigInteger;
 import fi.dy.masa.malilib.config.options.ConfigOptionList;
 import fi.dy.masa.malilib.util.FileUtils;
 import fi.dy.masa.malilib.util.JsonUtils;
@@ -61,12 +62,12 @@ public class Configs implements IConfigHandler {
     }
 
     public static class Speedometer {
-        public static final ConfigDouble     TICK_INTERVAL      = new ConfigDouble     ("Speedometer Update",     20.0, 0.0, 20.0, true,    "How often the Speedometer should update in game ticks");
+        public static final ConfigInteger    TICK_INTERVAL      = new ConfigInteger    ("Speedometer Update",     15, 0, 20, true,          "How often the Speedometer should update in game ticks");
         public static final ConfigBoolean    USE_COLORS         = new ConfigBoolean    ("Use Speedometer Colors", true,                     "Use the colors set below for the speedometer");
-        public static final ConfigColor      DEFAULT_COLOR      = new ConfigColor      ("Default Color",          "#FFFFFFFF",              "Default text color of the speedometer");
-        public static final ConfigColor      ACCELERATING_COLOR = new ConfigColor      ("Accelerating Color",     "#00FF00FF",              "Color for when you are accelerating");
-        public static final ConfigColor      DECELERATING_COLOR = new ConfigColor      ("Decelerating Color",     "#FF0000FF",              "Color for when you are decelerating");
-        public static final ConfigOptionList POSITIONS          = new ConfigOptionList ("Screen Position",        ScreenPositions.TOP_LEFT, "Where the speedometer should be displayed");
+        public static final ConfigColor      DEFAULT_COLOR      = new ConfigColor      ("Default Color",          "0xFFFFFFFF",             "Default text color of the speedometer");
+        public static final ConfigColor      ACCELERATING_COLOR = new ConfigColor      ("Accelerating Color",     "0x0000FF05",             "Color for when you are accelerating");
+        public static final ConfigColor      DECELERATING_COLOR = new ConfigColor      ("Decelerating Color",     "0x00FF0005",             "Color for when you are decelerating");
+        public static final ConfigOptionList POSITIONS          = new ConfigOptionList ("Screen Position",        ScreenPositions.CENTER,   "Where the speedometer should be displayed");
         
         public static final ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
             TICK_INTERVAL,
