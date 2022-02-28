@@ -8,6 +8,7 @@ import net.minecraft.entity.MovementType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
@@ -29,13 +30,15 @@ public class QuakeClientPlayer {
 
     private static final List<float[]> baseVelocities = new ArrayList<>();
 
+    //private static final ServerWorld world = new ServerWorld(null, null, null, null, null, null, null, null, false, 0, null, false);
+
     public static boolean moveEntityWithHeading(PlayerEntity player, float sidemove, float forwardmove) {
 
         if (!player.world.isClient) {
             return false;
         }
 
-        if (!FeatureToggle.ENABLED.getBooleanValue()) {
+        if (!FeatureToggle.ENABLED.getBooleanValue() /*|| world.getGameRules().getBoolean(EnableGamerule.BHOP_ENABLE)*/) {
             return false;
         }
 

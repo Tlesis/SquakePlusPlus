@@ -51,15 +51,15 @@ public class GuiConfigs extends GuiConfigsBase {
 
         if (tab == ConfigGuiTab.OPTIONS) {
             return 140;
+        } else if (tab == ConfigGuiTab.FEATURE_TOGGLE) {
+            return 260;
         }
-
         return 260;
     }
 
     @Override
     protected boolean useKeybindSearch() {
-        return DataManager.getConfigGuiTab() == ConfigGuiTab.FEATURE_TOGGLE || 
-               DataManager.getConfigGuiTab() == ConfigGuiTab.OPTIONS;
+        return DataManager.getConfigGuiTab() == ConfigGuiTab.FEATURE_TOGGLE;
     }
 
     @Override
@@ -104,6 +104,8 @@ public class GuiConfigs extends GuiConfigsBase {
         public void actionPerformedWithButton(ButtonBase button, int mouseButton) {
             DataManager.setConfigGuiTab(this.tab);
 
+            this.parent.reCreateListWidget(); // apply the new config width
+            this.parent.getListWidget().resetScrollbarPosition();
             this.parent.initGui();
         }
     }

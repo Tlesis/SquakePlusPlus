@@ -20,14 +20,14 @@ import fi.dy.masa.malilib.util.StringUtils;
 
 public enum FeatureToggle implements IHotkeyTogglable, IConfigNotifiable<IConfigBoolean> {
 
-    ENABLED               ("Squake",                    true,  "", "Enables/disables all changes to movement"),
-    BHOP                  ("Bhopping",                  true,  "", "Enables bunnyhopping and airstrafing"),
-    UNCAPPED_BHOP         ("Uncapped Bhopping",         true,  "", "If enabled, the soft and hard speed caps will not be applied at all"),
-    SHARK                 ("Sharking",                  false, "", "Enables sharking"),
-    TRIMP                 ("Trimping",                  false, "", "Enables trimping"),
-    HL2_OLD_ENGINE_BHOP   ("HL2 Old Engine Bhop",       false, "", "Makes Bhopping behave like Half-Life 2 Old Engine bhopping"),
-    JUMP_SPAM             ("Jump Spam",                 true,  "", "Spams jump rather than having the cooldown"),
-    SPEEDOMETER           ("Speedometer",               false, "", "Its just a Speedometer");
+    ENABLED               ("Squake",                    true,  "", "Enables/disables all changes to movement",                              "Squake"),
+    BHOP                  ("Bhopping",                  true,  "", "Enables bunnyhopping and airstrafing",                                  "Bhopping"),
+    UNCAPPED_BHOP         ("Uncapped Bhopping",         true,  "", "If enabled, the soft and hard speed caps will not be applied at all",   "Uncapped Bhopping"),
+    SHARK                 ("Sharking",                  false, "", "Enables sharking",                                                      "Sharking"),
+    TRIMP                 ("Trimping",                  false, "", "Enables trimping",                                                      "Trimping"),
+    HL2_OLD_ENGINE_BHOP   ("HL2 Old Engine Bhop",       false, "", "Makes Bhopping behave like Half-Life 2 Old Engine bhopping",            "HL2 Old Engine Bhop"),
+    JUMP_SPAM             ("Jump Spam",                 true,  "", "Spams jump rather than having the cooldown",                            "Jump Spam"),
+    SPEEDOMETER           ("Speedometer",               false, "", "Its just a Speedometer",                                                "Speedometer");
     
     public static final ImmutableList<FeatureToggle> VALUES = ImmutableList.copyOf(values());
 

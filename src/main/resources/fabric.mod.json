@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "squakeplusplus",
-  "version": "${version}",
+  "version": "${mod_version}",
   "name": "Squake++",
   "description": "Squake++ is an improved version of Squake for Fabric",
   "authors": [

@@ -20,8 +20,8 @@ import org.tlesis.squakeplusplus.scheduler.ClientTickHandler;
 public class InitHandler implements IInitializationHandler {
     @Override
     public void registerModHandlers() {
-        ConfigManager.getInstance().registerConfigHandler(Reference.MOD_ID, new Configs());
 
+        ConfigManager.getInstance().registerConfigHandler(Reference.MOD_ID, new Configs());
         InputEventHandler.getKeybindManager().registerKeybindProvider(InputHandler.getInstance());
         InputEventHandler.getInputManager().registerKeyboardInputHandler(InputHandler.getInstance());
 
@@ -29,7 +29,8 @@ public class InitHandler implements IInitializationHandler {
         RenderEventHandler.getInstance().registerGameOverlayRenderer(renderer);
         RenderEventHandler.getInstance().registerWorldLastRenderer(renderer);
 
-        TickHandler.getInstance().registerClientTickHandler(new ClientTickHandler());
+        ClientTickHandler tick = new ClientTickHandler();
+        TickHandler.getInstance().registerClientTickHandler(tick);
 
         WorldLoadListener listener = new WorldLoadListener();
         WorldLoadHandler.getInstance().registerWorldLoadPreHandler(listener);
