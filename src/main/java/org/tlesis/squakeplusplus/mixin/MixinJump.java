@@ -17,10 +17,8 @@ public abstract class MixinJump {
     
     @Inject(method = "tickMovement", at = @At(value = "HEAD"))
     public void tickMovement(CallbackInfo ci) {
-
-        if (FeatureToggle.JUMP_SPAM.getBooleanValue())
-            if (jumpingCooldown > 0) {
-                jumpingCooldown = 0;
-            }
+        if (FeatureToggle.JUMP_SPAM.getBooleanValue()) {
+            jumpingCooldown = 0;
+        }
     }
 }

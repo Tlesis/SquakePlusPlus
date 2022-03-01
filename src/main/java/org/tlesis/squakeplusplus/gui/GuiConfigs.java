@@ -6,7 +6,6 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 
 import fi.dy.masa.malilib.config.IConfigBase;
-import fi.dy.masa.malilib.config.options.BooleanHotkeyGuiWrapper;
 import fi.dy.masa.malilib.gui.GuiConfigsBase;
 import fi.dy.masa.malilib.gui.button.ButtonBase;
 import fi.dy.masa.malilib.gui.button.ButtonGeneric;
@@ -85,8 +84,9 @@ public class GuiConfigs extends GuiConfigsBase {
         return ConfigOptionWrapper.createFor(configs);
     }
 
-    protected BooleanHotkeyGuiWrapper wrapConfig(FeatureToggle config) {
-        return new BooleanHotkeyGuiWrapper(config.getName(), config, config.getKeybind());
+    @SuppressWarnings("deprecation")
+    protected fi.dy.masa.malilib.config.options.BooleanHotkeyGuiWrapper wrapConfig(FeatureToggle config) {
+        return new fi.dy.masa.malilib.config.options.BooleanHotkeyGuiWrapper(config.getName(), config, config.getKeybind());
     }
 
     @Override
