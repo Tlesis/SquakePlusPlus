@@ -1,5 +1,5 @@
 # Squake++
-Squake++ is client-side mod for Minecraft which adds bunnyhopping, strafe jumping, air control, trimping, and sharking to Minecraft. It also can disable the loss of speed when taking fall damage (needs to be installed server-side).
+Squake++ is client-side Fabric mod for Minecraft which adds bunnyhopping, strafe jumping, air control, trimping, and sharking, as well as a spedometer. It also can disable the loss of speed when taking fall damage (needs to be installed server-side). All options are configurable with an ingame config GUI.
 
 The modified movement code is based on Quake and Half-Life's code, with the the goal to make the movement feel the same as Half-Life. Because of this, trimping and sharking, which are based off of Fortress Forever's movement (not Half-Life), are disabled by default. These are only included as they were features in the [original Squake](https://www.curseforge.com/minecraft/mc-mods/squake) by squeek502.
 
