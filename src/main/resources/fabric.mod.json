@@ -18,7 +18,10 @@
     ],
     "main": [
       "org.tlesis.squakeplusplus.SquakePlusPlus"
-    ]
+    ],
+    "modmenu": [
+			"org.tlesis.squakeplusplus.compact.ModMenuImpl"
+		]
   },
   "mixins": [
     "mixins.squakeplusplus.json"
