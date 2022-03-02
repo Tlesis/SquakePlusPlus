@@ -63,16 +63,20 @@ public class Configs implements IConfigHandler {
 
     public static class Speedometer {
         public static final ConfigInteger    TICK_INTERVAL      = new ConfigInteger    ("Speedometer Update",     15, 0, 20, true,          "How often the Speedometer should update in game ticks");
-        public static final ConfigBoolean    SHOW_LAST_SPEED    = new ConfigBoolean    ("Display Previous Speed", false,                    "Displays your previous jump's speed under your current speed\n§6Work In Progress");
+        public static final ConfigBoolean    SHOW_LAST_SPEED    = new ConfigBoolean    ("Display Previous Speed", false,                    "Displays your previous jump's speed under your current speed");
         public static final ConfigBoolean    USE_COLORS         = new ConfigBoolean    ("Use Speedometer Colors", true,                     "Use the colors set below for the speedometer");
         public static final ConfigColor      DEFAULT_COLOR      = new ConfigColor      ("Default Color",          "0xFFFFFFFF",             "Default text color of the speedometer");
         public static final ConfigColor      ACCELERATING_COLOR = new ConfigColor      ("Accelerating Color",     "0x0000FF00",             "Color for when you are accelerating");
         public static final ConfigColor      DECELERATING_COLOR = new ConfigColor      ("Decelerating Color",     "0x00FF0000",             "Color for when you are decelerating");
         public static final ConfigOptionList POSITIONS          = new ConfigOptionList ("Screen Position",        ScreenPositions.CENTER,   "Where the speedometer should be displayed");
+        public static final ConfigBoolean    WHEN_JUMPING       = new ConfigBoolean    ("Only When Jumping",      false,                    "Only display the speedometer while currently jumping");
+        public static final ConfigBoolean    SHOW_DIF           = new ConfigBoolean    ("Show Difference",        false,                    "Show the diffrence between the current speed and the last speed\n§6Work In Progress");
         
         public static final ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
             TICK_INTERVAL,
             SHOW_LAST_SPEED,
+            WHEN_JUMPING,
+            SHOW_DIF,
             USE_COLORS,
 
             DEFAULT_COLOR,
@@ -80,6 +84,7 @@ public class Configs implements IConfigHandler {
             DECELERATING_COLOR,
 
             POSITIONS
+
         );
     }
 
