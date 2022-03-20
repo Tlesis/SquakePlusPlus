@@ -51,9 +51,7 @@ public class Configs implements IConfigHandler {
             SHARK_SURFACE_TENSION,
             SHARK_WATER_FRICTION,
             
-            TRIMP_MULTIPLIER/*,
-
-            INCREASED_FALL_DISTANCE*/
+            TRIMP_MULTIPLIER
         );
 
         public static final List<ConfigHotkey> HOTKEY_LIST = ImmutableList.of(
@@ -70,13 +68,11 @@ public class Configs implements IConfigHandler {
         public static final ConfigColor      DECELERATING_COLOR = new ConfigColor      ("Decelerating Color",     "0x00FF0000",             "Color for when you are decelerating");
         public static final ConfigOptionList POSITIONS          = new ConfigOptionList ("Screen Position",        ScreenPositions.CENTER,   "Where the speedometer should be displayed");
         public static final ConfigBoolean    WHEN_JUMPING       = new ConfigBoolean    ("Only When Jumping",      false,                    "Only display the speedometer while currently jumping");
-        public static final ConfigBoolean    SHOW_DIF           = new ConfigBoolean    ("Show Difference",        false,                    "Show the diffrence between the current speed and the last speed\n§6Work In Progress");
         
         public static final ImmutableList<IConfigBase> OPTIONS = ImmutableList.of(
             TICK_INTERVAL,
             SHOW_LAST_SPEED,
             WHEN_JUMPING,
-            SHOW_DIF,
             USE_COLORS,
 
             DEFAULT_COLOR,
