@@ -12,11 +12,11 @@ public enum ScreenPositions implements IConfigOptionListEntry {
     CENTER      ("Center",       "squake.label.screenpositions.center");
 
     private final String configString;
-    private final String unlocName;
+    private final String unlockName;
 
     private ScreenPositions(String configString, String unlocName) {
         this.configString = configString;
-        this.unlocName = unlocName;
+        this.unlockName = unlocName;
     }
 
     @Override
@@ -26,7 +26,7 @@ public enum ScreenPositions implements IConfigOptionListEntry {
 
     @Override
     public String getDisplayName() {
-        return StringUtils.translate(this.unlocName);
+        return StringUtils.translate(this.unlockName);
     }
 
     @Override
@@ -47,17 +47,13 @@ public enum ScreenPositions implements IConfigOptionListEntry {
     }
 
     @Override
-    public ScreenPositions fromString(String name)
-    {
+    public ScreenPositions fromString(String name) {
         return fromStringStatic(name);
     }
 
-    public static ScreenPositions fromStringStatic(String name)
-    {
-        for (ScreenPositions aligment : ScreenPositions.values())
-        {
-            if (aligment.configString.equalsIgnoreCase(name))
-            {
+    public static ScreenPositions fromStringStatic(String name) {
+        for (ScreenPositions aligment : ScreenPositions.values()) {
+            if (aligment.configString.equalsIgnoreCase(name)) {
                 return aligment;
             }
         }

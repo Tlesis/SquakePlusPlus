@@ -120,7 +120,7 @@ public class SpeedometerHud {
                 this.textRenderer.drawWithShadow(matrixStack, lastSpeedText, left, top + 10, color);
             }
 
-        } else {
+        } else if (!Speedometer.WHEN_JUMPING.getBooleanValue()) {
 
             this.textRenderer.drawWithShadow(matrixStack, currentSpeedText, left, top, Speedometer.DEFAULT_COLOR.getColor().intValue);
             if (Speedometer.SHOW_LAST_SPEED.getBooleanValue()) {
