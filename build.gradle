@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '0.11.30'
+    id 'fabric-loom' version '1.0-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -23,7 +23,9 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation "fi.dy.masa.malilib:malilib-fabric-${project.minecraft_version}:${project.malilib_version}"
+    modImplementation "masa.dy.fi.malilib:malilib-fabric-${project.minecraft_version}:${project.malilib_version}"
+    implementation group: "com.google.code.findbugs", name: "jsr305", version: "3.0.2"
+
 
     modCompileOnly "com.terraformersmc:modmenu:${project.mod_menu_version}"
 }
