@@ -1,32 +1,44 @@
 {
-  "schemaVersion": 1,
-  "id": "squake-fabric",
-  "version": "${version}",
-  "name": "Squake Fabric",
-  "description": "Squake mod fabric port",
-  "authors": [
-    "He11crow",
-    "Tlesis",
-    "LeviOP"],
-  "contact": {},
-  "license": "unlicense",
-  "icon": "assets/squake-fabric/icon.png",
-  "environment": "*",
-  "entrypoints": {
-    "client": [
-      "org.tlesis.squakefabric.client.SquakeFabricClient"
+    "schemaVersion": 1,
+    "id": "squakeplusplus",
+    "name": "Squake++",
+    "version": "2.2.3",
+    "description": "Squake++ is an improved version of Squake for Fabric",
+    "authors": [
+        "He11crow",
+        "Tlesis",
+        "LeviOP"
     ],
-    "main": [
-      "org.tlesis.squakefabric.SquakeFabric"
-    ]
-  },
-  "mixins": [
-    "mixins.squake-fabric.json"
-  ],
-  "depends": {
-    "fabricloader": ">=0.12.12",
-    "fabric": "*",
-    "minecraft": "1.18.1",
-    "malilib": ">=0.11.3 <0.12"
-  }
+
+    "contact": {
+        "homepage": "https://tlesis.org/projects/SquakePlusPlus",
+        "issues": "https://github.com/Tlesis/SquakePlusPlus/issues",
+        "sources": "https://github.com/Tlesis/SquakePlusPlus"
+    },
+
+    "license": "unlicense",
+    "icon": "assets/squakeplusplus/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "client": [
+            "org.tlesis.squakeplusplus.client.SquakePlusPlusClient"
+        ],
+        "main": [
+            "org.tlesis.squakeplusplus.SquakePlusPlus"
+        ],
+        "modmenu": [
+			"org.tlesis.squakeplusplus.compact.ModMenuImpl"
+		]
+    },
+
+    "mixins": [
+        "mixins.squakeplusplus.json"
+    ],
+    
+    "depends": {
+        "fabricloader": ">=0.12.12",
+        "fabric": "*",
+        "minecraft": "1.18.1",
+        "malilib": ">=0.11.3 <0.12"
+    }
 }

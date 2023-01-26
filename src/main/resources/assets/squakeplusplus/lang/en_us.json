@@ -1,0 +1,13 @@
+{
+    "squake.hotkeys.category.generic_hotkeys": "Hotkeys",
+    "squake.gui.title.configs": "Configs",
+    "squake.gui.button.config_gui.options": "Options",
+    "squake.hotkeys.category.feature_toggle_hotkeys": "Toggle Hotkeys",
+    "squake.gui.button.config_gui.feature_toggle": "Feature Toggle",
+    "squake.gui.button.config_gui.speedometer_options": "Speedometer",
+    "squake.label.screenpositions.topright": "Top Right",
+    "squake.label.screenpositions.topleft": "Top Left",
+    "squake.label.screenpositions.bottomright": "Bottom Right",
+    "squake.label.screenpositions.bottomleft": "Bottom Left",
+    "squake.label.screenpositions.center": "Center"
+}
