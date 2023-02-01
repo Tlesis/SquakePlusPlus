@@ -1,0 +1,37 @@
+plugins {
+	id 'fabric-loom'
+}
+
+loom {
+	runs {
+		testmodClient {
+			client()
+			ideConfigGenerated project.rootProject == project
+			name = "Testmod Client"
+			source sourceSets.main
+		}
+		testmodServer {
+			server()
+			ideConfigGenerated project.rootProject == project
+			name = "Testmod Server"
+			source sourceSets.main
+		}
+		autoTestServer {
+			inherit testmodServer
+			vmArg "-Dfabric.autoTest"
+		}
+	}
+
+	runConfigs.configureEach {
+		vmArg "-Dfabric.loom.test.space=This contains a space"
+	}
+}
+
+archivesBaseName = "fabric-example-mod"
+version = "1.0.0"
+
+dependencies {
+	minecraft "com.mojang:minecraft:1.18.1"
+	mappings "net.fabricmc:yarn:1.18.1+build.12:v2"
+	modImplementation "net.fabricmc:fabric-loader:0.12.12"
+}
