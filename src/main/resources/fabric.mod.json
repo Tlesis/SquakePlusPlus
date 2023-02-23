@@ -2,7 +2,7 @@
     "schemaVersion": 1,
     "id": "squakeplusplus",
     "name": "Squake++",
-    "version": "2.2.3",
+    "version": "2.2.4",
     "description": "Squake++ is an improved version of Squake for Fabric",
     "authors": [
         "He11crow",
@@ -36,9 +36,9 @@
     ],
     
     "depends": {
-        "fabricloader": ">=0.12.12",
+        "fabricloader": ">=0.14.14",
         "fabric": "*",
-        "minecraft": "1.18.1",
-        "malilib": ">=0.11.3 <0.12"
+        "minecraft": "1.19.3",
+        "malilib": "0.14.0"
     }
 }

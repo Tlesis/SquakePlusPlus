@@ -1,10 +1,10 @@
 package org.tlesis.squakeplusplus.event;
 
-import javax.annotation.Nullable;
-
 import fi.dy.masa.malilib.interfaces.IWorldLoadListener;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
+
+import org.jetbrains.annotations.Nullable;
 import org.tlesis.squakeplusplus.data.DataManager;
 
 public class WorldLoadListener implements IWorldLoadListener {
